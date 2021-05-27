@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 
@@ -21,9 +26,27 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		// TODO Auto-generated method stub
-		return jobPositionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		
+		return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAll(),
+				"İş pozisyonları listelendi");
+	}
+
+	@Override
+	public Result add(JobPosition jobPosition) {
+		
+		if(findAllByPosition(jobPosition.getPosition()).getData().isEmpty()) {
+			this.jobPositionDao.save(jobPosition);
+			return new SuccessResult("İş pozisyonu eklendi");
+		}
+		return new ErrorResult("bu iş pozisyonu mevcut.");
+		
+	}
+
+	@Override
+	public DataResult<List<JobPosition>> findAllByPosition(String position) {
+		
+		return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAllByPosition(position));
 	}
 
 }
