@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 
 public interface JobPositionDao extends JpaRepository<JobPosition, Integer>{
-	List<JobPosition> findAllByPosition(String position) ;
+	List<JobPosition> findAllByPosition(String position);
+	JobPosition findById(int id);
+	JobPosition findByPosition(String position);
 }

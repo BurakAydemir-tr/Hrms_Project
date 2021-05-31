@@ -49,4 +49,16 @@ public class JobPositionManager implements JobPositionService{
 		return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAllByPosition(position));
 	}
 
+	@Override
+	public DataResult<JobPosition> findById(int id) {
+		
+		return new SuccessDataResult<JobPosition>(jobPositionDao.findById(id));
+	}
+
+	@Override
+	public DataResult<JobPosition> findByPosition(String position) {
+		
+		return new SuccessDataResult<JobPosition>(jobPositionDao.findByPosition(position));
+	}
+
 }
