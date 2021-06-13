@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
@@ -34,5 +35,10 @@ public class JobExperiencesController {
 	@GetMapping("/getall")
 	public DataResult<List<JobExperience>> getAll(){
 		return this.jobExperienceService.getAll();
+	}
+	
+	@GetMapping("/findAllByResume_IdOrderByEndedDateDesc")
+	public DataResult<List<JobExperience>> findAllByResume_IdOrderByEndedDateDesc(@RequestParam int id){
+		return this.jobExperienceService.findAllByResume_IdOrderByEndedDateDesc(id);
 	}
 }

@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -39,5 +41,6 @@ public class Candidate extends User{
 	private Date birthDate;
 	
 	@OneToMany(mappedBy = "candidate")
+	@JsonIgnore
 	private List<Resume> resume;
 }

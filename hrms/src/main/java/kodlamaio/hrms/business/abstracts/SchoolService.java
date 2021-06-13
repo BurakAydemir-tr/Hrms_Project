@@ -10,4 +10,5 @@ public interface SchoolService {
 
 	Result add(School school);
 	DataResult<List<School>> getAll();
+	DataResult<List<School>> findAllByResumeIdOrderByEndedDateDesc(int id);
 }

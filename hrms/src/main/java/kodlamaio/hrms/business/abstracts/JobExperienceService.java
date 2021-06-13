@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 public interface JobExperienceService {
 	Result add(JobExperience jobExperience);
 	DataResult<List<JobExperience>> getAll();
+	DataResult<List<JobExperience>> findAllByResume_IdOrderByEndedDateDesc(int id);
 }

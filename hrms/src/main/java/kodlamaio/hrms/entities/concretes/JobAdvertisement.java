@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,8 +34,8 @@ public class JobAdvertisement {
 	//@Column(name="job_position_id")
 	//private int jobPositionId;
 	
-	@Column(name="city_id")
-	private int cityId;
+	//@Column(name="city_id")
+	//private int cityId;
 	
 	@Column(name="job_description")
 	private String jobDescription;
@@ -65,5 +66,15 @@ public class JobAdvertisement {
 	@JoinColumn(name="job_position_id")
 	private JobPosition jobPosition;
 	
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City city;
 	
+	@ManyToOne
+	@JoinColumn(name="type_work_id")
+	private TypeWork typeWork;
+	
+	@ManyToOne
+	@JoinColumn(name="how_work_id")
+	private HowWork howWork;
 }

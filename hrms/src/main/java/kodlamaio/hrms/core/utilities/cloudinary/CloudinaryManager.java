@@ -20,7 +20,7 @@ public class CloudinaryManager implements CloudinaryService{
 	private Cloudinary cloudinary;
 	
 	@Autowired
-	public CloudinaryManager(Cloudinary cloudinary) {
+	public CloudinaryManager() {
 		super();
 		this.cloudinary = new Cloudinary(ObjectUtils.asMap(
 				"cloud_name","kaptan",

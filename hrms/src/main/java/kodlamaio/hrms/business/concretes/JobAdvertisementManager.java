@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -34,7 +33,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		Result businessRulesResult=BusinessRules.run(
 				jobPositionCheck(jobAdvertisement.getJobPosition().getId()),
 				jobDescriptionCheck(jobAdvertisement.getJobDescription()),
-				cityCheck(jobAdvertisement.getCityId()),
+				cityCheck(jobAdvertisement.getCity().getId()),
 				positionNumberCheck(jobAdvertisement.getPositionNumber()),
 				deadlineDateCheck(jobAdvertisement.getDeadlineDate())
 				);
