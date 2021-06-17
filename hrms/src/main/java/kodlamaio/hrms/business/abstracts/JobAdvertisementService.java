@@ -15,4 +15,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> findAllByIsActivated(boolean isActivated);
 	DataResult<List<JobAdvertisement>> findAllByIsActivatedTrueOrderByCreatedDate();
 	DataResult<List<JobAdvertisement>> findAllIsActivatedAndEmployer(int employerId);
+	DataResult<List<JobAdvertisement>> findAllByIsActivatedFalse();
+	DataResult<JobAdvertisement> getById(int id);
+	Result confirmIsActivated(int id);
 }

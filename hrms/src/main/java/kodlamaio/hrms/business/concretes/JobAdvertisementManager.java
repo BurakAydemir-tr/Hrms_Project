@@ -111,4 +111,30 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAllIsActivatedAndEmployer(employerId));
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> findAllByIsActivatedFalse() {
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAllByIsActivatedFalse());
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getById(id));
+	}
+
+	@Override
+	public Result confirmIsActivated(int id) {
+		JobAdvertisement jobAdvert=this.jobAdvertisementDao.getById(id);
+		if(jobAdvert.isActivated()) {
+			return new ErrorResult("İş ilanı zaten yayında");
+		}
+		
+		jobAdvert.setActivated(true);
+		this.jobAdvertisementDao.save(jobAdvert);
+		return new SuccessResult("İş ilanı onaylandı");
+	}
+	
+	
+
 }

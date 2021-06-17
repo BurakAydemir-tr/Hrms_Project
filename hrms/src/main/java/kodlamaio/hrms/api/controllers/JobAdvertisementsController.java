@@ -54,4 +54,19 @@ public class JobAdvertisementsController {
 	public DataResult<List<JobAdvertisement>>  findAllIsActivatedAndEmployer(@RequestParam int employerId){
 		return this.jobAdvertisementService.findAllIsActivatedAndEmployer(employerId);
 	}
+	
+	@GetMapping("/findAllIsActivatedFalse")
+	public DataResult<List<JobAdvertisement>> findAllByIsActivatedFalse(){
+		return this.jobAdvertisementService.findAllByIsActivatedFalse();
+	}
+	
+	@GetMapping("/getById")
+	public DataResult<JobAdvertisement> getById(@RequestParam int id){
+		return this.jobAdvertisementService.getById(id);
+	}
+	
+	@PostMapping("/confirmIsActivate")
+	public Result confirmIsActivated(@RequestParam int id) {
+		return this.jobAdvertisementService.confirmIsActivated(id);
+	}
 }

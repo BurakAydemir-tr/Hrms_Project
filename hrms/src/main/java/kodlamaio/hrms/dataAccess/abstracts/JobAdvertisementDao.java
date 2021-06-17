@@ -11,6 +11,8 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	List<JobAdvertisement> findAllByIsActivated(boolean isActivated);
 	List<JobAdvertisement> findAllByIsActivatedTrueOrderByCreatedDate();
+	List<JobAdvertisement> findAllByIsActivatedFalse();
+	JobAdvertisement getById(int id);
 	
 	@Query("From JobAdvertisement where isActivated = true and employer_id =:employerId")
 	List<JobAdvertisement> findAllIsActivatedAndEmployer(int employerId);
