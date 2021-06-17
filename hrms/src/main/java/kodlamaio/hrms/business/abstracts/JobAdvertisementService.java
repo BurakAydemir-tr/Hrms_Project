@@ -6,10 +6,11 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertDto;
 
 
 public interface JobAdvertisementService {
-	Result add(JobAdvertisement jobAdvertisement);
+	Result add(JobAdvertDto jobAdvertDto);
 	DataResult<List<JobAdvertisement>> getAll();
 	DataResult<List<JobAdvertisement>> findAllByIsActivated(boolean isActivated);
 	DataResult<List<JobAdvertisement>> findAllByIsActivatedTrueOrderByCreatedDate();
