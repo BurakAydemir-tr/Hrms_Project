@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name="user_id")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resume"})
 public class Candidate extends User{
 	
 	@Column(name="first_name")
@@ -41,6 +42,5 @@ public class Candidate extends User{
 	private Date birthDate;
 	
 	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore
 	private List<Resume> resume;
 }

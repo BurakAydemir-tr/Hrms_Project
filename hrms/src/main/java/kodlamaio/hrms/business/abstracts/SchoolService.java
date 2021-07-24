@@ -9,6 +9,8 @@ import kodlamaio.hrms.entities.concretes.School;
 public interface SchoolService {
 
 	Result add(School school);
+	Result delete(School school);
 	DataResult<List<School>> getAll();
+	DataResult<List<School>> getByResumeId(int resumeId);
 	DataResult<List<School>> findAllByResumeIdOrderByEndedDateDesc(int id);
 }

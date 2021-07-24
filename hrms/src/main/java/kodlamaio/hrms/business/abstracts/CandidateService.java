@@ -10,4 +10,5 @@ public interface CandidateService {
 	DataResult<List<Candidate>> getAll();
 	Result add(Candidate candidate);
 	DataResult<List<Candidate>> getAllByNationalId(String nationalId);
+	DataResult<Candidate> getById(int id);
 }

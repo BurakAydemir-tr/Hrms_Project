@@ -102,6 +102,12 @@ public class CandidateManager implements CandidateService{
 		return false;
 	}
 
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		
+		return new SuccessDataResult<Candidate>(this.candidateDao.getById(id));
+	}
+
 	
 	
 	

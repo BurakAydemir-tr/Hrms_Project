@@ -35,8 +35,9 @@ public class School {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Resume resume;
 	
-	@ManyToOne(targetEntity = EduGraduate.class)
-	@JoinColumn(name = "graduate_id", referencedColumnName =  "id" ,nullable = false)
+	@ManyToOne()
+	//@JsonProperty(access = Access.WRITE_ONLY)
+	@JoinColumn(name = "graduate_id", referencedColumnName =  "id")
 	private EduGraduate eduGraduate;;
 	
 	@Column(name="school_name")

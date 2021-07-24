@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,5 +38,5 @@ public class Language {
 	private String languageName;
 	
 	@Column(name="level")
-	private char level;
+	private String level;
 }

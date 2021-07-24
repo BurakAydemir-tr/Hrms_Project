@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,25 @@ public class ResumeManager implements ResumeService{
 		cv.setPhoto(imageUrl);
 		resumeDao.save(cv);
 		return new SuccessResult("Kayıt başarılı");
+	}
+
+	@Override
+	public DataResult<Resume> getById(int id) {
+		
+		return new SuccessDataResult<Resume>(this.resumeDao.getById(id));
+	}
+
+	@Override
+	public DataResult<Resume> getByCandidateId(int id) {
+		
+		return new SuccessDataResult<Resume>(this.resumeDao.findByCandidateId(id));
+	}
+
+	@Override
+	public Result update(Resume resume) {
+		Date now=new Date();
+		resume.setUpdatedDate(now);
+		return new SuccessDataResult<Resume>(this.resumeDao.save(resume),"Veri güncellendi");
 	}
 
 }

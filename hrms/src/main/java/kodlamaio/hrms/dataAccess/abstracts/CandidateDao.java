@@ -8,4 +8,5 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 
 public interface CandidateDao extends JpaRepository<Candidate, Integer>{
 	List<Candidate>  findAllByNationalId(String natinalId);
+	Candidate getById(int id);
 }

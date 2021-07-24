@@ -10,7 +10,10 @@ import kodlamaio.hrms.entities.concretes.Resume;
 
 public interface ResumeService {
 	Result add(Resume resume);
+	Result update(Resume resume);
 	DataResult<List<Resume>> getAll();
 	
 	Result saveImage(MultipartFile file,int resumeId);
+	DataResult<Resume> getById(int id);
+	DataResult<Resume> getByCandidateId(int id);
 }
