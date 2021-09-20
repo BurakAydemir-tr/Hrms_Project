@@ -52,18 +52,18 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public Result add(Employer employer) {
 		
-		if(!this.checkEmptyField(employer)) {
-			return new ErrorResult("Boş alan bırakmayınız.");
-			
-		}else if(!this.emailFormatValid(employer.getEmail())) {
-			return new ErrorResult("Geçersiz email.");
-			
-		}else if(!this.checkEqualEmailAndDomain(employer.getEmail(), employer.getWebAdress())) {
-			return new ErrorResult("Web site ile email aynı domain de değil");
-			
-		}else if(!this.checkEmailExist(employer.getEmail())) {
-			return new ErrorResult("Email zaten kayıtlı.");
-		}
+//		if(!this.checkEmptyField(employer)) {
+//			return new ErrorResult("Boş alan bırakmayınız.");
+//			
+//		}else if(!this.emailFormatValid(employer.getEmail())) {
+//			return new ErrorResult("Geçersiz email.");
+//			
+//		}else if(!this.checkEqualEmailAndDomain(employer.getEmail(), employer.getWebAdress())) {
+//			return new ErrorResult("Web site ile email aynı domain de değil");
+//			
+//		}else if(!this.checkEmailExist(employer.getEmail())) {
+//			return new ErrorResult("Email zaten kayıtlı.");
+//		}
 		
 		
 		
@@ -76,14 +76,14 @@ public class EmployerManager implements EmployerService{
 		
 	}
 	
-	private boolean checkEmptyField(Employer employer) {
-		if(employer.getCompanyName().isBlank()|| employer.getEmail().isBlank()||
-				employer.getPassword().isBlank()||employer.getPhoneNumber().isBlank()||
-				employer.getWebAdress().isBlank()) {
-			return false;
-		}
-		return true;
-	}
+//	private boolean checkEmptyField(Employer employer) {
+//		if(employer.getCompanyName().isBlank()|| employer.getEmail().isBlank()||
+//				employer.getPassword().isBlank()||employer.getPhoneNumber().isBlank()||
+//				employer.getWebAdress().isBlank()) {
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	private boolean checkEmptyField(EmployerUpdate employerUpdate) {
 		if(employerUpdate.getCompanyName().isBlank()|| employerUpdate.getEmail().isBlank()||
@@ -145,5 +145,36 @@ public class EmployerManager implements EmployerService{
 		
 		return new SuccessResult("Güncelleme isteği gönderildi. Onay bekleniyor.");
 	}
+
+	@Override
+	public DataResult<List<EmployerUpdate>> findAllByVerifiedFalse() {
+		
+		return new SuccessDataResult<List<EmployerUpdate>>(this.employerUpdateDao.findAllByVerifiedFalse(),"Onaylanacak olan işveren listesi");
+	}
+
+	@Override
+	public Result updateVerifiedByTrue(int id,int employeeId) {
+		EmployerUpdate employerUpdate=employerUpdateDao.getById(id);
+		if (employerUpdate != null) {
+			employerUpdate.setVerified(true);
+			employerUpdate.setEmployeeId(employeeId);
+			employerUpdate.setVerifiedDate(LocalDate.now());
+			employerUpdateDao.save(employerUpdate);
+			Employer employer=employerDao.getById(employerUpdate.getEmployerId());
+			employer.setCompanyName(employerUpdate.getCompanyName());
+			employer.setEmail(employerUpdate.getEmail());
+			employer.setPhoneNumber(employerUpdate.getPhoneNumber());
+			employer.setWebAdress(employerUpdate.getWebAdress());
+			return new SuccessResult(add(employer).getMessage());
+			//return new SuccessResult("İş veren bilgileri onaylandı.");
+		}else {
+			return new ErrorResult("İşveren bulunamadı.");
+		}
+		
+		
+		
+	}
+
+	
 
 }

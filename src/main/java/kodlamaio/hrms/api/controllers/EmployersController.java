@@ -41,12 +41,22 @@ public class EmployersController {
 	}
 	
 	@PostMapping("/update")
-	public Result add(@RequestBody EmployerUpdate employerUpdate) {
+	public Result update(@RequestBody EmployerUpdate employerUpdate) {
 		return this.employerService.update(employerUpdate);
+	}
+	
+	@PostMapping("/updateVerifiedByTrue")
+	public Result updateVerifiedByTrue(@RequestParam int id,@RequestParam int employeeId) {
+		return this.employerService.updateVerifiedByTrue(id, employeeId);
 	}
 	
 	@GetMapping("/getById")
 	public DataResult<Employer> getById(@RequestParam int id){
 		return this.employerService.getById(id);
+	}
+	
+	@GetMapping("/findAllByVerifiedFalse")
+	public DataResult<List<EmployerUpdate>> findAllByVerifiedFalse(){
+		return this.employerService.findAllByVerifiedFalse();
 	}
 }
