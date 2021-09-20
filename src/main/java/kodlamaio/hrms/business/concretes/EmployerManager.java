@@ -52,18 +52,18 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public Result add(Employer employer) {
 		
-		if(!this.checkEmptyField(employer)) {
-			return new ErrorResult("Boş alan bırakmayınız.");
-			
-		}else if(!this.emailFormatValid(employer.getEmail())) {
-			return new ErrorResult("Geçersiz email.");
-			
-		}else if(!this.checkEqualEmailAndDomain(employer.getEmail(), employer.getWebAdress())) {
-			return new ErrorResult("Web site ile email aynı domain de değil");
-			
-		}else if(!this.checkEmailExist(employer.getEmail())) {
-			return new ErrorResult("Email zaten kayıtlı.");
-		}
+//		if(!this.checkEmptyField(employer)) {
+//			return new ErrorResult("Boş alan bırakmayınız.");
+//			
+//		}else if(!this.emailFormatValid(employer.getEmail())) {
+//			return new ErrorResult("Geçersiz email.");
+//			
+//		}else if(!this.checkEqualEmailAndDomain(employer.getEmail(), employer.getWebAdress())) {
+//			return new ErrorResult("Web site ile email aynı domain de değil");
+//			
+//		}else if(!this.checkEmailExist(employer.getEmail())) {
+//			return new ErrorResult("Email zaten kayıtlı.");
+//		}
 		
 		
 		
